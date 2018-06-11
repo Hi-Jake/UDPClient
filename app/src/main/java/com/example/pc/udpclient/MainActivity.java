@@ -9,6 +9,7 @@ import android.widget.EditText;
 public class MainActivity extends AppCompatActivity {
     Button start;
     EditText ip;
+    Thread sender=null;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -22,8 +23,9 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 String address = String.valueOf(ip.getText());
+                Client client = new Client();
                 Client.SERVERIP = address;
-                new Thread(new Client()).start();
+                client.start();
             }
         });
 
